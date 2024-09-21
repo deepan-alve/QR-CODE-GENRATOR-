@@ -1,0 +1,196 @@
+:root {
+    --bg-gradient: linear-gradient(45deg, #a0e6ff 0%, #7fd1c8 100%);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --input-bg: rgba(255, 255, 255, 0.5);
+    --button-bg: #7fd1c8;
+    --text-color: #4a6670;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.3s ease;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px var(--shadow-color);
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+h1 {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    transform: translateZ(30px);
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 30px;
+    transform: translateZ(20px);
+}
+
+input {
+    flex-grow: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    background-color: var(--button-bg);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+#qr-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 0 10px 20px var(--shadow-color);
+}
+
+#qr-image.visible {
+    display: block;
+}
+
+#loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--input-bg);
+    border-top: 5px solid var(--button-bg);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    transform: translateZ(30px);
+}
+
+.icon-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+}
+
+.icon-btn i {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.icon-btn:hover {
+    transform: translateY(-5px);
+    color: var(--button-bg);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    --bg-gradient: linear-gradient(45deg, #2a4858 0%, #3a7d8d 100%);
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --button-bg: #3a7d8d;
+    --text-color: #e0f0f5;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    input, button {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.qr-container.expanded {
+    height: 250px;
+    margin: 20px 0;
+}
+
